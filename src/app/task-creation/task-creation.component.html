@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
       <label for="dueDate">Due Date</label>
-      <input type="date" id="dueDate" [(ngModel)]="newTask.dueDate" name="dueDate" required>
+      <input type="date" id="dueDate" [min]="currentDate" [(ngModel)]="newTask.dueDate" name="dueDate" required>
     </div>
     <button type="submit">Create Task</button>
   </form>

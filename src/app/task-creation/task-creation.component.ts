@@ -13,6 +13,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './task-creation.component.scss'
 })
 export class TaskCreationComponent {
+  currentDate: string;
   newTask: Task = {
     id: 0,
     title: '',
@@ -21,7 +22,9 @@ export class TaskCreationComponent {
     status: false,
   };
 
-  constructor(private taskService: TaskService, private router: Router) {}
+  constructor(private taskService: TaskService, private router: Router) {
+    this.currentDate = new Date().toISOString().slice(0, 10);
+  }
 
   // Method to create a new task
   createTask(): void {

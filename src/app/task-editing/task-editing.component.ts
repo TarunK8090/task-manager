@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 
 export class TaskEditingComponent implements OnInit {
 
+  currentDate: string;
   taskId!: number;
   task!: Task;
   date: any;
@@ -23,7 +24,9 @@ export class TaskEditingComponent implements OnInit {
     private route: ActivatedRoute,
     private taskService: TaskService,
     private router: Router,
-  ) {}
+  ) {    
+    this.currentDate = new Date().toISOString().slice(0, 10);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
