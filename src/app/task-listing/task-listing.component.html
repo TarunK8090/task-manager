@@ -1,0 +1,21 @@
+<h1 class="heading">Task List</h1>
+<button class="toggle-button" (click)="toggleDisplay()">
+    {{ displayType === 'flex' ? 'Switch to Grid' : 'Switch to Flex' }}
+</button>
+<div [ngClass]="displayType === 'flex' ? 'task-list-flex' : 'task-list-grid'">
+  <div class="task-item" *ngFor="let task of tasks" [ngClass]="{ 'completed-task': task.status, 'incomplete-task': !task.status }">
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.description }}</p>
+    <p>Due Date: {{ task.dueDate | date }}</p>
+    <p [ngStyle]="task.status ? {'color': 'green'} : {'color': 'red'}">Status: {{ task.status ? "Completed" : "Not Completed" }}</p>
+    <div class="task-buttons">
+      <button class="complete" [style.background]="task.status ? 'red' : 'green'" (click)="toggleTaskStatus(task)">
+        {{ task.status ? "Mark as Incomplete" : "Mark as Complete" }}
+      </button>
+      <button class="delete" (click)="deleteTask(task.id)">Delete</button>
+      <button class="edit" [routerLink]="['/tasks/edit', task.id]">Edit</button>
+    </div>
+  </div>
+  <button class="create-task" routerLink="/tasks/create">Create New Task</button>
+</div>
+
